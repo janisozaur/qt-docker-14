@@ -1,6 +1,12 @@
 FROM ubuntu:14.04
 ENV XXDEBIAN_FRONTEND noninteractive
 ENV DEBIAN_FRONTEND noninteractive
+RUN apt-get update && \
+    apt-get install -y software-properties-common && \
+    apt-add-repository -y ppa:ubuntu-toolchain-r/test && \
+    apt-get update && \
+    apt-get install -y gcc-6 g++-6 gcc-5 g++-5 && \
+    apt-get -qq clean
 RUN apt-get -qq update && apt-get -qq dist-upgrade && apt-get install -qq -y --no-install-recommends \
     git \
     openssh-client \
